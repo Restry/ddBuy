@@ -10,61 +10,56 @@
 <template>
   <div id="tip">
     <div class="tipBox">
-      <img src="../../../../images/icon/transport.png"
-           alt="">
+      <img src="../../../../images/icon/transport.png" alt />
       <span class="tipText">{{$t('goodsDetail.quickTime')}}</span>
     </div>
     <div class="tipBox">
-      <img src="../../../../images/icon/money.png"
-           alt="">
+      <img src="../../../../images/icon/money.png" alt />
       <span class="tipText">{{$t('common.distributionTip')}}</span>
     </div>
 
     <div class="tipBox">
-      <img src="../../../../images/icon/seal.png"
-           alt="">
+      <img src="../../../../images/icon/seal.png" alt />
       <span class="tipText">{{$t('common.easeBack')}}</span>
     </div>
     <div @click="goToVip">
-      <img class="adImg"
-           :src="home_ad">
+      <img class="adImg" :src="home_ad" />
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 export default {
   props: {
     // 父组件传递过来的数据
     home_ad: [String]
   },
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
   computed: {
-    ...mapState(['userInfo'])
-
+    ...mapState(["userInfo"])
   },
   methods: {
-    goToVip () {
-      this.$router.push({ name: 'myVip' });
+    goToVip() {
+      this.$router.push({ name: "myVip" });
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
 #tip {
   margin-top: 0.3rem;
-  position: relative;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .tipBox {
-  float: left;
-  width: 33%;
-  text-align: center;
+  // float: left;
+  // width: 33%;
+  // text-align: center;
 }
 
 .tipBox img {

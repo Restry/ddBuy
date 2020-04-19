@@ -17,9 +17,9 @@
         <Header></Header>
         <!-- 轮播图 -->
         <Sowing :sowing_list="sowing_list" />
+      </div>
         <!-- tip -->
         <Tip :home_ad="home_ad" />
-      </div>
       <!-- Nav -->
       <Nav :nav_list="nav_list" />
       <!-- 跳转到会员界面 -->
