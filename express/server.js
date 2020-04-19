@@ -16,11 +16,16 @@ const axios = require('axios');
 const router = express.Router();
 router.use('/', (req, res) => {
   // const { p } = req.query;
+
   // res.writeHead(200, { 'Content-Type': 'text/html' });
   const baseUrl = 'http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api' + req.originalUrl;
-  console.log(`url:${baseUrl}:${JSON.stringify(req.query)}`);
+  console.log(`method:${req.method},url:${baseUrl}:${JSON.stringify(req.query)}`);
   // req.originalUrl;
-  axios.get(baseUrl).then(({ data }) => {
+  axios({
+    url: baseUrl,
+    method: req.method,
+    data: req.body,
+  }).then(({ data }) => {
     res.json(data)
   }).catch((err) => {
     res.send(err.message);
