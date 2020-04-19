@@ -20,7 +20,18 @@ const router = express.Router();
 // });
 
 // 反向代理
-router.use('/', proxy('http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api/'));
+router.use('/', proxy('http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api/', {
+  decorateRequest: function (proxyReq, originalReq) {
+    // you can update headers 
+    proxyReq.headers['x-request-id'] = Math.random().toString(36).substring(-10);
+    // you can change the method 
+    // proxyReq.method = 'GET';
+    // you can munge the bodyContent. 
+    // proxyReq.bodyContent = proxyReq.bodyContent.replace(/losing/, 'winning!');
+    return proxyReq;
+  },
+  https: false
+}));
 
 // router.get('/', (req, res) => res.sendFile(path.resolve(__dirname, '../dist/index.html')));
 // router.use('/api', api);
