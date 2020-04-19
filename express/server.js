@@ -8,13 +8,23 @@ const bodyParser = require('body-parser');
 // const api = require('./yuque');
 // const fallback = require('connect-history-api-fallback')
 const proxy = require('express-http-proxy');
+const axios = require('axios');
+
+baseUrl = 'http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api';
+
+
 
 const router = express.Router();
-router.get('/', (req, res) => {
+router.use('/', (req, res) => {
   // const { p } = req.query;
   // res.writeHead(200, { 'Content-Type': 'text/html' });
   console.log(`query:${JSON.stringify(req.query)}`);
-  res.json({success: true})
+  // req.originalUrl;
+  axios.get(baseUrl + req.originalUrl).then(({ data }) => {
+    res.json(data)
+  }).catch((err) => {
+    res.send(err.message);
+  });
   // res.write(fs.readdirSync(path.resolve(__dirname, decodeURIComponent(p))).join(';'));
   // res.end();
 });
