@@ -35,6 +35,7 @@
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-service": "^3.11.0",
     "babel-plugin-import": "^1.12.1",
+    "netlify-lambda": "^1.6.3",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "svg-sprite-loader": "^4.1.6",
