@@ -26,7 +26,7 @@ router.use('/', (req, res) => {
     method: req.method,
     data: req.body,
   }).then(({ data }) => {
-    res.json(data)
+    res.send(data)
   }).catch((err) => {
     res.send(err.message);
   });
