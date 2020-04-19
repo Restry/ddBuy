@@ -10,28 +10,28 @@ const bodyParser = require('body-parser');
 const proxy = require('express-http-proxy');
 
 const router = express.Router();
-// router.get('/', (req, res) => {
-//   const { p } = req.query;
-//   res.writeHead(200, { 'Content-Type': 'text/html' });
-//   console.log(`query:${JSON.stringify(req.query)}`);
-//   res.write(fs.readdirSync(path.resolve(__dirname, decodeURIComponent(p))).join(';'));
-//   // res.sendFile(path.resolve(__dirname, '../dist/index.html'))
-//   res.end();
-// });
+router.get('/', (req, res) => {
+  // const { p } = req.query;
+  // res.writeHead(200, { 'Content-Type': 'text/html' });
+  console.log(`query:${JSON.stringify(req.query)}`);
+  res.json({success: true})
+  // res.write(fs.readdirSync(path.resolve(__dirname, decodeURIComponent(p))).join(';'));
+  // res.end();
+});
 
 // 反向代理
-router.use('/', proxy('http://www.baidu.com/', {
-  // decorateRequest: function (proxyReq, originalReq) {
-  //   // you can update headers 
-  //   proxyReq.headers['x-request-id'] = Math.random().toString(36).substring(-10);
-  //   // you can change the method 
-  //   // proxyReq.method = 'GET';
-  //   // you can munge the bodyContent. 
-  //   // proxyReq.bodyContent = proxyReq.bodyContent.replace(/losing/, 'winning!');
-  //   return proxyReq;
-  // },
-  https: false
-}));
+// router.use('/', proxy('http://www.baidu.com/', {
+//   // decorateRequest: function (proxyReq, originalReq) {
+//   //   // you can update headers 
+//   //   proxyReq.headers['x-request-id'] = Math.random().toString(36).substring(-10);
+//   //   // you can change the method 
+//   //   // proxyReq.method = 'GET';
+//   //   // you can munge the bodyContent. 
+//   //   // proxyReq.bodyContent = proxyReq.bodyContent.replace(/losing/, 'winning!');
+//   //   return proxyReq;
+//   // },
+//   https: false
+// }));
 
 // router.get('/', (req, res) => res.sendFile(path.resolve(__dirname, '../dist/index.html')));
 // router.use('/api', api);
