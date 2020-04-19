@@ -18,7 +18,7 @@ router.use('/', (req, res) => {
   // const { p } = req.query;
 
   // res.writeHead(200, { 'Content-Type': 'text/html' });
-  const baseUrl = 'http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api' + req.originalUrl;
+  const baseUrl = 'http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api' + req.originalUrl.replace('/.netlify/functions/server','');
   console.log(`method:${req.method},url:${baseUrl}:${JSON.stringify(req.query)}`);
   // req.originalUrl;
   axios({
