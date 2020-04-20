@@ -66,8 +66,8 @@ exports.handler = async (event, context) => {
   /* construct the fauna query */
   return axios({
     url: baseUrl,
-    method: req.method,
-    data: req.body,
+    method: event.httpMethod,
+    data: event.body,
   }).then(({ data }) => {
     return {
       statusCode: 200,
