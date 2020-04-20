@@ -18,7 +18,7 @@ router.use('/', (req, res) => {
   // const { p } = req.query;
 
   // res.writeHead(200, { 'Content-Type': 'text/html' });
-  const baseUrl = 'http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api' + req.originalUrl.replace('/.netlify/functions/server','');
+  const baseUrl = 'http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api' + req.originalUrl.replace('/.netlify/functions/server', '');
   console.log(`method:${req.method},url:${baseUrl}:${JSON.stringify(req.query)}`);
   // req.originalUrl;
   axios({
@@ -57,4 +57,26 @@ app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 // app.use(fallback());
 
 // module.exports = app;
-module.exports.handler = serverless(app);
+exports.handler = async (event, context) => {
+  /* parse the string body into a useable JS object */
+  // res.writeHead(200, { 'Content-Type': 'text/html' });
+  const baseUrl = 'http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api' + event.url.replace('/.netlify/functions/server', '');
+  console.log(`method:${event.method},url:${baseUrl}:${JSON.stringify(event.query)}`);
+
+  /* construct the fauna query */
+  return axios({
+    url: baseUrl,
+    method: req.method,
+    data: req.body,
+  }).then(({ data }) => {
+    return {
+      statusCode: 200,
+      data
+    };
+  }).catch((err) => {
+    return {
+      statusCode: 500,
+      data: err.message
+    };
+  });
+}
