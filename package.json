@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "netlify": "netlify-lambda build express",
+    "dev": "netlify dev",
     "report": "npm_config_report=true npm run build"
   },
   "dependencies": {

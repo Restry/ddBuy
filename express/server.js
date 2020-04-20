@@ -60,8 +60,8 @@ app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 exports.handler = async (event, context) => {
   /* parse the string body into a useable JS object */
   // res.writeHead(200, { 'Content-Type': 'text/html' });
-  const baseUrl = 'http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api' + event.url.replace('/.netlify/functions/server', '');
-  console.log(`method:${event.method},url:${baseUrl}:${JSON.stringify(event.query)}`);
+  const baseUrl = 'http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api' + event.path.replace('/.netlify/functions/server', '');
+  console.log(`method:${event.httpMethod},url:${baseUrl}:${JSON.stringify(event)}`);
 
   /* construct the fauna query */
   return axios({
