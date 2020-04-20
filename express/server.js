@@ -95,14 +95,14 @@ method:GET,url:http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api/hom
     params: event.queryStringParameters,
     data: event.body,
   }).then(({ data }) => {
-    return {
+    callback({
       statusCode: 200,
       data
-    };
+    });
   }).catch((err) => {
-    return {
+    callback({
       statusCode: 500,
       data: err.message
-    };
+    });
   });
 }
